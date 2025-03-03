@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const userRoute = require('./users/userRoute');
 const hotelRouter = require('./hotels/hotelRoute');
 const roomRoute = require('./rooms/roomRoute');
+const cors = require('cors');
+
 dotenv.config();
 
 const connect = async () => {
@@ -16,6 +18,8 @@ const connect = async () => {
 		throw error;
 	}
 };
+
+app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // Allow credentials (e.g., cookies)
 app.use(cookieparser());
 app.use(express.json());
 

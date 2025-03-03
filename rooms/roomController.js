@@ -1,11 +1,20 @@
 const express = require('express');
 const Room = require('../rooms/roomModel');
+const Hotel = require('../hotels/hotelModel');
 
 //CREATE ROOM
 const CreateRoom = async (req, res) => {
+	const hotelId = req.params.hotelid;
 	const newroom = new Room(req.body);
 	try {
 		const savedRoom = await newroom.save();
+		try {
+			await Hotel.findByIdAndUpdate(hotelId, {
+				$push: { rooms: savedRoom._id },
+			});
+		} catch (error) {
+			next(error);
+		}
 		res.status(200).json(savedRoom);
 	} catch (error) {
 		res.status(500).json(error);
@@ -33,6 +42,13 @@ const UpdateRoom = async (req, res, next) => {
 const deleteRoom = async (req, res, next) => {
 	try {
 		await Room.findOneAndDelete(req.params.id);
+		try {
+			await Hotel.findByIdAndUpdate(hotelId, {
+				$pull: { rooms: req.params.id },
+			});
+		} catch (error) {
+			return error;
+		}
 		res.status(200).json('Room deleted successfully');
 	} catch (error) {
 		next(error);
@@ -58,10 +74,28 @@ const getAllRoom = async (req, res, next) => {
 		next(error);
 	}
 };
+
+const UpdateRoomAvailability = async (req, res, next) => {
+	try {
+		await Room.updateOne(
+			{ 'roomNumbers._id': req.params.id },
+			{
+				$push: {
+					'roomNumbers.$.unavailableDates': req.body.dates,
+				},
+			}
+		);
+		res.status(200).json('Room status has been Updates');
+	} catch (error) {
+		res.status(500).json(error);
+		next(error);
+	}
+};
 module.exports = {
 	UpdateRoom,
 	CreateRoom,
 	getAllRoom,
 	deleteRoom,
 	getARoom,
+	UpdateRoomAvailability,
 };

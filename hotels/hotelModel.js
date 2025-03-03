@@ -50,6 +50,10 @@ const hotelSchema = new mongoose.Schema({
 		type: Boolean,
 		default: false,
 	},
+	category: {
+		type: String,
+		required: true,
+	},
 });
 const Hotel = mongoose.model('Hotel', hotelSchema);
 module.exports = Hotel;
