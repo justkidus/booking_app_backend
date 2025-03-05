@@ -21,10 +21,7 @@ const connect = async () => {
 
 app.use(
 	cors({
-		origin: [
-			'http://localhost:5173',
-			'https://booking-app-frontend-jet.vercel.app',
-		],
+		origin: ['https://booking-app-frontend-jet.vercel.app'],
 		credentials: true,
 		methods: ['GET', 'PUT', 'POST', 'DELETE'],
 		allowedHeaders: ['Content-Type', 'Authorization'],
