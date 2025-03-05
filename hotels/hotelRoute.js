@@ -10,15 +10,15 @@ const {
 	getHotelRoom,
 	arrangeByCategory,
 } = require('./hotelController');
-
+const { verifyUser, verifyAdmin } = require('../utilis/verifyToken');
 const hotelRouter = express.Router();
 
 // CREATE HOTEL
-hotelRouter.post('/hotel/createHotel', CreateHotel);
+hotelRouter.post('/hotel/createHotel', verifyAdmin, CreateHotel);
 // UPDATE HOTEL
-hotelRouter.put('/hotel/updatehotel/:id', UpdateHotel);
+hotelRouter.put('/hotel/updatehotel/:id', verifyAdmin, UpdateHotel);
 // DELETE HOTEL
-hotelRouter.delete('/hotel/deletehotel/:id', deleteHotel);
+hotelRouter.delete('/hotel/deletehotel/:id', verifyAdmin, deleteHotel);
 // GET A HOTEL
 hotelRouter.get('/hotel/getahotel/:id', getAHotel);
 // GET ALL HOTEL

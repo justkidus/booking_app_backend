@@ -75,7 +75,7 @@ const getAllRoom = async (req, res, next) => {
 	}
 };
 
-const UpdateRoomAvailability = async (req, res, next) => {
+const bookRoom = async (req, res, next) => {
 	try {
 		await Room.updateOne(
 			{ 'roomNumbers._id': req.params.id },
@@ -97,5 +97,5 @@ module.exports = {
 	getAllRoom,
 	deleteRoom,
 	getARoom,
-	UpdateRoomAvailability,
+	bookRoom,
 };

@@ -19,7 +19,18 @@ const connect = async () => {
 	}
 };
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true })); // Allow credentials (e.g., cookies)
+app.use(
+	cors({
+		origin: [
+			'http://localhost:5173',
+			'https://booking-app-frontend-jet.vercel.app/',
+		],
+		credentials: true,
+	})
+); // Allow credentials (e.g., cookies)
+app.get('/', (req, res) => {
+	res.send('hello');
+});
 app.use(cookieparser());
 app.use(express.json());
 
