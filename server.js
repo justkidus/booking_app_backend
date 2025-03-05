@@ -19,18 +19,28 @@ const connect = async () => {
 	}
 };
 
+// app.use(
+// 	cors({
+// 		origin: [
+// 			'http://localhost:8000',
+// 			'http://localhost:5173',
+// 			'https://booking-app-frontend-jet.vercel.app',
+// 		],
+// 		credentials: true,
+// 		methods: ['GET', 'PUT', 'POST', 'DELETE'],
+// 		allowedHeaders: ['Content-Type', 'Authorization'],
+// 	})
+// ); // Allow credentials (e.g., cookies)
+
 app.use(
 	cors({
-		origin: [
-			'http://localhost:8000',
-			'http://localhost:5173',
-			'https://booking-app-frontend-jet.vercel.app',
-		],
+		origin: '*', // Allow all domains (not recommended for production)
 		credentials: true,
 		methods: ['GET', 'PUT', 'POST', 'DELETE'],
 		allowedHeaders: ['Content-Type', 'Authorization'],
 	})
-); // Allow credentials (e.g., cookies)
+);
+
 app.get('/', (req, res) => {
 	res.send('hello');
 });
