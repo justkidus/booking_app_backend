@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const userRoute = require('./users/userRoute');
 const hotelRouter = require('./hotels/hotelRoute');
 const roomRoute = require('./rooms/roomRoute');
-const cors = (require = 'cors');
+const cors = require('cors');
 dotenv.config();
 
 const connect = async () => {
@@ -17,10 +17,13 @@ const connect = async () => {
 		throw error;
 	}
 };
-
+const allowedOrigins = [
+	'https://booking-app-backend-three.vercel.app/', // Production
+	'http://localhost:5173', // Local development
+];
 app.use(
 	cors({
-		origin: ['https://booking-app-frontend-jet.vercel.app'],
+		origin: allowedOrigins,
 		credentials: true,
 		methods: ['GET', 'PUT', 'POST', 'DELETE'],
 		allowedHeaders: ['Content-Type', 'Authorization'],
