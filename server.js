@@ -18,7 +18,7 @@ const connect = async () => {
 	}
 };
 const allowedOrigins = [
-	'https://booking-app-backend-three.vercel.app/', // Production
+	'https://booking-app-backend-three.vercel.app', // Production
 	'http://localhost:5173', // Local development
 ];
 app.use(
@@ -48,5 +48,5 @@ const port = process.env.PORT;
 
 app.listen(port, () => {
 	connect();
-	console.log(`Server is running on http://localhost:${process.env.port}`);
+	console.log(`Server is running on http://localhost:${process.env.PORT}`);
 });
