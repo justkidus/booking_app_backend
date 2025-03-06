@@ -6,8 +6,7 @@ const mongoose = require('mongoose');
 const userRoute = require('./users/userRoute');
 const hotelRouter = require('./hotels/hotelRoute');
 const roomRoute = require('./rooms/roomRoute');
-const cors = require('cors');
-
+const cors = (require = 'cors');
 dotenv.config();
 
 const connect = async () => {
@@ -26,17 +25,7 @@ app.use(
 		methods: ['GET', 'PUT', 'POST', 'DELETE'],
 		allowedHeaders: ['Content-Type', 'Authorization'],
 	})
-); // Allow credentials (e.g., cookies)
-
-// app.use(
-// 	cors({
-// 		origin: '*', // Allow all domains (not recommended for production)
-// 		credentials: true,
-// 		methods: ['GET', 'PUT', 'POST', 'DELETE'],
-// 		allowedHeaders: ['Content-Type', 'Authorization'],
-// 	})
-// );
-
+);
 app.get('/', (req, res) => {
 	res.send('hello');
 });
@@ -52,7 +41,7 @@ app.use('/api', hotelRouter);
 //ROOM ROUTE
 app.use('/api', roomRoute);
 
-const port = process.env.port;
+const port = process.env.PORT;
 
 app.listen(port, () => {
 	connect();
