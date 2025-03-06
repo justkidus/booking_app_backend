@@ -18,7 +18,7 @@ const connect = async () => {
 	}
 };
 const allowedOrigins = [
-	'https://bookingappbackend-production.up.railway.app/', // Production
+	'https://bookingappbackend-production.up.railway.app', // Production
 	'http://localhost:5173', // Local development
 ];
 app.use(
