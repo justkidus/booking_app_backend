@@ -18,7 +18,7 @@ const connect = async () => {
 	}
 };
 const allowedOrigins = [
-	'https://booking-app-backend-three.vercel.app', // Production
+	'https://bookingappbackend-production.up.railway.app/', // Production
 	'http://localhost:5173', // Local development
 ];
 app.use(
